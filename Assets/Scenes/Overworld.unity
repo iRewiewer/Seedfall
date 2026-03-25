@@ -271,27 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f16c5396efd7c640aa65a58af949c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantGenerator
-  terrainLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  plantCount: 20
-  spawnAreaMin: {x: 0, y: 0}
-  spawnAreaMax: {x: 50, y: 50}
-  raycastHeight: 100
-  flatExclusionRadius: 12
-  worldCenter: {x: 25, y: 25}
-  axiom: F
-  iterations: 3
-  angle: 22.5
-  step: 0.6
-  segmentThickness: 0.08
-  ruleForF: 'FF-[-F+F+F]+[+F-F-F]'
-  radialCopies: 2
-  radialAngleStep: 90
-  plantScaleRange: {x: 0.8, y: 1.4}
-  angleVariation: {x: -6, y: 6}
-  stepVariation: {x: -0.1, y: 0.15}
-  branchMaterial: {fileID: 2100000, guid: 7f0217fa557defe4c8bace27a3418747, type: 2}
+  material: {fileID: 2100000, guid: 7f0217fa557defe4c8bace27a3418747, type: 2}
+  step: 1
+  thickness: 0.08
+  sliceCount: 3
+  sliceRotationStep: 45
 --- !u!4 &540183518
 Transform:
   m_ObjectHideFlags: 0
@@ -351,6 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efa12dab6d74e7479601ba8e0e100fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverworldManager
+  terrainGen: {fileID: 1477121615}
+  plantGen: {fileID: 540183517}
+  plantCount: 10
 --- !u!1 &908714444
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,9 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c88b740ea9fab47ae29ee9a4070aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerrainGenerator
-  width: 200
-  depth: 200
-  cellSize: 1
   noiseScale: 0.1
   heightMultiplier: 30
   flatRadius: 20

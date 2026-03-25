@@ -3,27 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
 public class TerrainGenerator : MonoBehaviour
 {
-	[SerializeField] private int width = 200;
-	[SerializeField] private int depth = 200;
-	[SerializeField] private float cellSize = 1f;
-
 	[SerializeField] private float noiseScale = 0.1f;
 	[SerializeField] private float heightMultiplier = 30f;
 
 	[SerializeField] private float flatRadius = 20f;
 	[SerializeField] private float blendRadius = 60f;
 
-	public void Start()
-	{
-		
-	}
-
-	public void Update()
-	{
-		
-	}
-
-	public Mesh GenerateMesh()
+	public Mesh GenerateMesh(int width, int depth, float cellSize)
 	{
 		Vector3[] vertices = new Vector3[(width + 1) * (depth + 1)];
 		int[] triangleIndices = new int[width * depth * 6];
@@ -88,5 +74,13 @@ public class TerrainGenerator : MonoBehaviour
 		this.gameObject.layer = LayerMask.NameToLayer("Ground");
 
 		return mesh;
+	}
+
+	public float GetHeight(float x, float z)
+	{
+		float noiseX = x * noiseScale;
+		float noiseZ = z * noiseScale;
+
+		return Mathf.PerlinNoise(noiseX, noiseZ) * heightMultiplier;
 	}
 }
